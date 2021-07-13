@@ -1,9 +1,5 @@
-function LoginBox () {
-  return (
-    <div>
-      yeeeehaw
-    </div>
-  );
-};
+function LoginBox() {
+  return <div>yeeeehaw</div>;
+}
 
 export default LoginBox;
