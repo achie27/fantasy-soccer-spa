@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
 const UserContext = React.createContext([
   {
-    id: "",
-    token: "",
+    id: '',
+    token: '',
   },
   () => {},
 ]);

@@ -1,12 +1,12 @@
-import { TextField, Button } from "@material-ui/core";
-import { useContext, useState } from "react";
-import { registerUser } from "../adapters/backend";
-import { notify } from "../components/NotifToast";
-import UserContext from "../contexts/User";
+import { TextField, Button } from '@material-ui/core';
+import { useContext, useState } from 'react';
+import { registerUser } from '../adapters/backend';
+import { notify } from '../components/NotifToast';
+import UserContext from '../contexts/User';
 
 function RegisterBox() {
   const [user] = useContext(UserContext);
-  const [registeredId, setRegisteredId] = useState("");
+  const [registeredId, setRegisteredId] = useState('');
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -19,7 +19,7 @@ function RegisterBox() {
         setRegisteredId(data.data.userId);
       })
       .catch((e) => {
-        notify(e.message, "error");
+        notify(e.message, 'error');
       });
   }
 

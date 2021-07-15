@@ -1,23 +1,23 @@
-import { Container } from "@material-ui/core";
-import { useState } from "react";
-import LoginBox from "../components/LoginBox";
-import RegisterBox from "../components/RegisterBox";
+import { Container } from '@material-ui/core';
+import { useState } from 'react';
+import LoginBox from '../components/LoginBox';
+import RegisterBox from '../components/RegisterBox';
 
 function AuthForms() {
-  const [authType, setAuthType] = useState("login");
+  const [authType, setAuthType] = useState('login');
 
   return (
     <Container maxWidth="sm" s>
       <Container>
-        {authType === "login" ? <LoginBox /> : <RegisterBox />}
+        {authType === 'login' ? <LoginBox /> : <RegisterBox />}
       </Container>
       <Container>
-        {authType === "login" ? (
+        {authType === 'login' ? (
           <span>
-            Don't have an account?{" "}
+            Don't have an account?{' '}
             <a
-              style={{ cursor: "pointer" }}
-              onClick={() => setAuthType("register")}
+              style={{ cursor: 'pointer' }}
+              onClick={() => setAuthType('register')}
             >
               Register now.
             </a>
@@ -25,8 +25,8 @@ function AuthForms() {
         ) : (
           <span>
             <a
-              style={{ cursor: "pointer" }}
-              onClick={() => setAuthType("login")}
+              style={{ cursor: 'pointer' }}
+              onClick={() => setAuthType('login')}
             >
               Log in
             </a>

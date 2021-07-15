@@ -1,4 +1,4 @@
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer, toast } from 'react-toastify';
 
 export function NotifToastContainer() {
   return (
@@ -8,10 +8,10 @@ export function NotifToastContainer() {
 
 export function notify(text, type) {
   switch (type) {
-    case "info":
+    case 'info':
       toast(text);
       break;
-    case "error":
+    case 'error':
       toast.error(text);
       break;
     default:
