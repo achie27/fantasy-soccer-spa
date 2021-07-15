@@ -6,7 +6,7 @@ import UserContext from "../contexts/User";
 
 function RegisterBox() {
   const [user] = useContext(UserContext);
-  const [registeredId, setRegisteredId] = useState('');
+  const [registeredId, setRegisteredId] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -27,11 +27,12 @@ function RegisterBox() {
     <div>
       {user?.id && user?.accessToken ? (
         <span>Will render dashboard</span> // Redirect to Dashboard
+      ) : registeredId ? (
+        <span>
+          Congrats, you've been registered! Log in now to access the platform
+        </span>
       ) : (
-        registeredId ? (
-          <span>Congrats, you've been registered! Log in now to access the platform</span>
-        ) : (
-          <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <TextField
             id="email"
             name="email"
@@ -49,7 +50,6 @@ function RegisterBox() {
           />
           <Button type="submit">Register</Button>
         </form>
-        )
       )}
       ;
     </div>
