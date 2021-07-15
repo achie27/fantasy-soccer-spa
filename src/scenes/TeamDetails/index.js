@@ -9,25 +9,25 @@ function TeamDetails() {
   const [team, setTeam] = useState({
     id: '',
     name: '',
-    players: []
+    players: [],
   });
 
   useEffect(() => {
     if (user?.id && !team?.id) {
       fetchTeam(user.id, user.token)
-        .then(team => {
+        .then((team) => {
           setTeam(team);
         })
-        .catch(e => {
+        .catch((e) => {
           notify(e.message, 'error');
         });
-    }  
+    }
   }, [user.id]);
 
   return (
     <Container maxWidth="sm">
-      <List>  
-        { team?.players.map(p => {
+      <List>
+        {team?.players.map((p) => {
           return (
             <ListItem key={p.id}>
               <ListItemText
@@ -35,7 +35,7 @@ function TeamDetails() {
                 secondary={`Value ${p.value}`}
               />
             </ListItem>
-          )
+          );
         })}
       </List>
     </Container>

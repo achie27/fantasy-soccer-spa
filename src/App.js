@@ -4,7 +4,7 @@ import { NotifToastContainer } from './components/NotifToast';
 import 'react-toastify/dist/ReactToastify.css';
 import UserContext from './contexts/User';
 import { useState } from 'react';
-import TeamDetails from './scenes/TeamDetails'; 
+import TeamDetails from './scenes/TeamDetails';
 
 function App() {
   const user = useState({});
@@ -19,8 +19,7 @@ function App() {
           alignItems="center"
         >
           <Main />
-          <TeamDetails/>
-
+          <TeamDetails />
         </Box>
       </div>
     </UserContext.Provider>

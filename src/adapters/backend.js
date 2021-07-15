@@ -34,41 +34,47 @@ export const registerUser = async (email, password) => {
 
 export const fetchTeam = async (userId, token) => {
   try {
-    const { data: { data: user } } = await axios.get(
+    const {
+      data: { data: user },
+    } = await axios.get(
       `${process.env.REACT_APP_API_HOST}/api/v1/users/${userId}`,
       {
         headers: {
-          'access-token': token
-        }
-      }
-    );
-    
-    const { data: { data: team} } = await axios.get(
-      `${process.env.REACT_APP_API_HOST}/api/v1/teams/${user.teams[0]?.id}`,
-      {
-        headers: {
-          'access-token': token
-        }
+          'access-token': token,
+        },
       }
     );
 
-    const players = (await Promise.all(
-      team.players.map(async p => {
-        return await axios.get(
-          `${process.env.REACT_APP_API_HOST}/api/v1/players/${p.id}`,
-          {
-            headers: {
-              'access-token': token
+    const {
+      data: { data: team },
+    } = await axios.get(
+      `${process.env.REACT_APP_API_HOST}/api/v1/teams/${user.teams[0]?.id}`,
+      {
+        headers: {
+          'access-token': token,
+        },
+      }
+    );
+
+    const players = (
+      await Promise.all(
+        team.players.map(async (p) => {
+          return await axios.get(
+            `${process.env.REACT_APP_API_HOST}/api/v1/players/${p.id}`,
+            {
+              headers: {
+                'access-token': token,
+              },
             }
-          }
-        );
-      })
-    )).map(d => d.data.data);
+          );
+        })
+      )
+    ).map((d) => d.data.data);
 
     return {
       id: team.id,
       name: team.name,
-      players
+      players,
     };
   } catch (e) {
     if (e.response) {
