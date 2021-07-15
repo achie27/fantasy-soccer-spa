@@ -1,8 +1,8 @@
 import { TextField, Button } from '@material-ui/core';
 import { useContext, useState } from 'react';
-import { registerUser } from '../adapters/backend';
-import { notify } from '../components/NotifToast';
-import UserContext from '../contexts/User';
+import { registerUser } from '../../../adapters/backend';
+import { notify } from '../../../components/NotifToast';
+import UserContext from '../../../contexts/User';
 
 function RegisterBox() {
   const [user] = useContext(UserContext);

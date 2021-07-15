@@ -1,8 +1,8 @@
 import { TextField, Button } from '@material-ui/core';
 import { useContext } from 'react';
-import { getUserToken } from '../adapters/backend';
-import { notify } from '../components/NotifToast';
-import UserContext from '../contexts/User';
+import { getUserToken } from '../../../adapters/backend';
+import { notify } from '../../../components/NotifToast';
+import UserContext from '../../../contexts/User';
 
 function LoginBox() {
   const [user, setUser] = useContext(UserContext);
@@ -49,7 +49,6 @@ function LoginBox() {
           <Button type="submit">Login</Button>
         </form>
       )}
-      ;
     </div>
   );
 }
