@@ -35,22 +35,23 @@ function TeamDetails() {
     },
     {
       field: 'deletebutton',
-      width: 50,
+      headerName: 'Delete Player',
       renderCell: (params) => (
         <IconButton
           onClick={() => {
-            setTeam((oldTeam) => {
-              return {
-                ...oldTeam,
-                players: oldTeam.players.filter((p) => p.id != params.id),
-              };
-            });
-            console.log(team);
             updatePlayersInTeam(
               team.id,
               team.players.filter((p) => p.id != params.id),
               user?.token
-            );
+            ).then(() => {
+              setTeam((oldTeam) => {
+                return {
+                  ...oldTeam,
+                  players: oldTeam.players.filter((p) => p.id != params.id),
+                };
+              });
+              notify(`Player ${params.id} removed from team`, 'info');
+            });
           }}
         >
           <Delete />
