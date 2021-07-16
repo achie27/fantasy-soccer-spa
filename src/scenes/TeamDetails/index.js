@@ -1,8 +1,10 @@
-import { Container, List, ListItem, ListItemText } from '@material-ui/core';
+import { Container, IconButton } from '@material-ui/core';
 import { useContext, useEffect, useState } from 'react';
 import UserContext from '../../contexts/User';
-import { fetchTeam } from '../../adapters/backend';
+import { fetchTeam, updatePlayersInTeam } from '../../adapters/backend';
 import { notify } from '../../components/NotifToast';
+import { Delete } from '@material-ui/icons';
+import { DataGrid } from '@material-ui/data-grid';
 
 function TeamDetails() {
   const [user] = useContext(UserContext);
@@ -11,6 +13,51 @@ function TeamDetails() {
     name: '',
     players: [],
   });
+
+  const columns = [
+    {
+      field: 'firstName',
+      headerName: 'First name',
+      width: 150,
+      editable: true,
+    },
+    {
+      field: 'lastName',
+      headerName: 'Last name',
+      width: 150,
+      editable: true,
+    },
+    {
+      field: 'value',
+      headerName: 'Value',
+      width: 150,
+      type: 'number',
+    },
+    {
+      field: 'deletebutton',
+      width: 50,
+      renderCell: (params) => (
+        <IconButton
+          onClick={() => {
+            setTeam((oldTeam) => {
+              return {
+                ...oldTeam,
+                players: oldTeam.players.filter((p) => p.id != params.id),
+              };
+            });
+            console.log(team);
+            updatePlayersInTeam(
+              team.id,
+              team.players.filter((p) => p.id != params.id),
+              user?.token
+            );
+          }}
+        >
+          <Delete />
+        </IconButton>
+      ),
+    },
+  ];
 
   useEffect(() => {
     if (user?.id && !team?.id) {
@@ -24,21 +71,27 @@ function TeamDetails() {
     }
   }, [user.id]);
 
+  function processCellEdit(e) {
+    // e.stopPropagation();
+    console.log(e);
+  }
+
   return (
-    <Container maxWidth="sm">
-      <List>
-        {team?.players.map((p) => {
-          return (
-            <ListItem key={p.id}>
-              <ListItemText
-                primary={`${p.firstName} ${p.lastName}`}
-                secondary={`Value ${p.value}`}
-              />
-            </ListItem>
-          );
-        })}
-      </List>
-    </Container>
+    <div style={{ height: 400, width: '80%' }}>
+      {team?.players?.length > 0 && (
+        <DataGrid
+          rows={team.players.map((p) => ({
+            id: p.id,
+            firstName: p.firstName,
+            lastName: p.lastName,
+            value: p.value,
+          }))}
+          columns={columns}
+          pageSize={10}
+          onEditCellChangeCommitted={processCellEdit}
+        />
+      )}
+    </div>
   );
 }
 

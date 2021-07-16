@@ -1,10 +1,10 @@
 import { Box } from '@material-ui/core';
 import Main from './pages/Main';
+import Dashboard from './pages/Dashboard';
 import { NotifToastContainer } from './components/NotifToast';
 import 'react-toastify/dist/ReactToastify.css';
 import UserContext from './contexts/User';
 import { useState } from 'react';
-import TeamDetails from './scenes/TeamDetails';
 
 function App() {
   const user = useState({});
@@ -19,7 +19,7 @@ function App() {
           alignItems="center"
         >
           <Main />
-          <TeamDetails />
+          <Dashboard />
         </Box>
       </div>
     </UserContext.Provider>

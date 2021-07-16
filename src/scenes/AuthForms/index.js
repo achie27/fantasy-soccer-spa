@@ -9,7 +9,7 @@ function AuthForms() {
   const [authType, setAuthType] = useState('login');
 
   return (
-    <Container maxWidth="sm" s>
+    <Container maxWidth="sm">
       <Container>
         {authType === 'login' ? <LoginBox /> : <RegisterBox />}
       </Container>

@@ -84,3 +84,25 @@ export const fetchTeam = async (userId, token) => {
     throw new Error(e.toJSON().message);
   }
 };
+
+export const updatePlayersInTeam = async (teamId, players, token) => {
+  try {
+    console.log(teamId);
+
+    const data = await axios.put(
+      `${process.env.REACT_APP_API_HOST}/api/v1/teams/${teamId}`,
+      { players },
+      {
+        headers: {
+          'access-token': token,
+        },
+      }
+    );
+  } catch (e) {
+    if (e.response) {
+      throw new Error(e.response.data.code);
+    }
+
+    throw new Error(e.toJSON().message);
+  }
+};
