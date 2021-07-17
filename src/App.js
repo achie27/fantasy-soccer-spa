@@ -21,10 +21,10 @@ function App() {
           alignItems="center"
         >
           <Switch>
-            <PrivateRoute path='/dashboard' component={Dashboard} exact/>
-            <Route path='/' component={Landing} exact/>
+            <PrivateRoute path="/dashboard" component={Dashboard} exact />
+            <Route path="/" component={Landing} exact />
             <Route>
-              <Redirect to='/'/>
+              <Redirect to="/" />
             </Route>
           </Switch>
         </Box>
@@ -36,16 +36,14 @@ function App() {
 function PrivateRoute({ component: Component, ...rest }) {
   const [user] = useContext(UserContext);
 
-  return <Route
-    {...rest}
-    render={props =>
-      user?.id && user?.token ? (
-        <Component {...props} />
-      ) : (
-        <Redirect to='/'/>
-      )
-    }
-  />;
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        user?.id && user?.token ? <Component {...props} /> : <Redirect to="/" />
+      }
+    />
+  );
 }
 
 export default App;

@@ -30,7 +30,7 @@ function LoginBox() {
   return (
     <div>
       {user?.id && user?.token ? (
-        <Redirect to='/dashboard' />
+        <Redirect to="/dashboard" />
       ) : (
         <form onSubmit={handleSubmit}>
           <TextField

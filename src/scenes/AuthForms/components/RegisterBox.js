@@ -28,7 +28,7 @@ function RegisterBox() {
   return (
     <div>
       {user?.id && user?.accessToken ? (
-        <Redirect to='/dashboard' />
+        <Redirect to="/dashboard" />
       ) : registeredId ? (
         <span>
           Congrats, you've been registered! Log in now to access the platform

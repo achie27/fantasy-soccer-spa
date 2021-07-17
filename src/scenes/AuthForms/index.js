@@ -16,7 +16,7 @@ function AuthForms() {
         {authType === 'login' ? <LoginBox /> : <RegisterBox />}
       </Container>
       {user?.id && user?.token ? (
-        <Redirect to='/dashboard' />
+        <Redirect to="/dashboard" />
       ) : (
         <Container>
           {authType === 'login' ? (
