@@ -1,4 +1,4 @@
-import { Box } from '@material-ui/core';
+import { Box, AppBar, Typography } from '@material-ui/core';
 
 import Landing from './pages/Landing';
 import Dashboard from './pages/Dashboard';
@@ -12,22 +12,26 @@ function App() {
   const [user, setUser] = useState({});
   return (
     <UserContext.Provider value={[user, setUser]}>
-      <div>
-        <NotifToastContainer />
-        <Box
-          minHeight="100vh"
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <Switch>
-            <PrivateRoute path="/dashboard" component={Dashboard} exact />
-            <Route path="/" component={Landing} exact />
-            <Route>
-              <Redirect to="/" />
-            </Route>
-          </Switch>
-        </Box>
+      <AppBar className='header'>
+        <div className='container'>
+          <div className='appbar-title'>
+            Fantasy Soccer
+          </div>
+        </div>
+      </AppBar>
+      <div className='app'>
+        <div className='container'>
+          <NotifToastContainer />
+          <div className='app center-aligned'>
+            <Switch>
+              <PrivateRoute path="/dashboard" component={Dashboard} exact />
+              <Route path="/" component={Landing} exact />
+              <Route>
+                <Redirect to="/" />
+              </Route>
+            </Switch>
+          </div>
+        </div>
       </div>
     </UserContext.Provider>
   );

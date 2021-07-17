@@ -126,7 +126,6 @@ function TeamDetails() {
   }
 
   return (
-    <div style={{ height: 400, width: '60%' }}>
       <DataGrid
         rows={team?.players?.map((p) => ({
           id: p.id,
@@ -143,7 +142,6 @@ function TeamDetails() {
         dis
         onEditCellChangeCommitted={processCellEdit}
       />
-    </div>
   );
 }
 
