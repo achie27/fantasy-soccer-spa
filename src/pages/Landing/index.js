@@ -1,6 +1,6 @@
 import AuthForms from '../../scenes/AuthForms';
 
-function Main() {
+function Landing() {
   return (
     <div>
       <AuthForms />
@@ -8,4 +8,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default Landing;

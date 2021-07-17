@@ -1,5 +1,7 @@
 import { Container } from '@material-ui/core';
 import { useContext, useState } from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom';
+
 import LoginBox from './components/LoginBox';
 import RegisterBox from './components/RegisterBox';
 import UserContext from '../../contexts/User';
@@ -14,7 +16,7 @@ function AuthForms() {
         {authType === 'login' ? <LoginBox /> : <RegisterBox />}
       </Container>
       {user?.id && user?.token ? (
-        '' // <span>Rendering the dashboard</span>
+        <Redirect to='/dashboard' />
       ) : (
         <Container>
           {authType === 'login' ? (

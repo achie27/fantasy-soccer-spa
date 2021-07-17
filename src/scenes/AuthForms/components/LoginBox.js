@@ -1,5 +1,7 @@
 import { TextField, Button } from '@material-ui/core';
 import { useContext } from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom';
+
 import { getUserToken } from '../../../adapters/backend';
 import { notify } from '../../../components/NotifToast';
 import UserContext from '../../../contexts/User';
@@ -28,7 +30,7 @@ function LoginBox() {
   return (
     <div>
       {user?.id && user?.token ? (
-        <span>Will render dashboard</span> // Redirect to Dashboard
+        <Redirect to='/dashboard' />
       ) : (
         <form onSubmit={handleSubmit}>
           <TextField

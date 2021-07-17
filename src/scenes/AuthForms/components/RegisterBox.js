@@ -1,5 +1,7 @@
 import { TextField, Button } from '@material-ui/core';
 import { useContext, useState } from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom';
+
 import { registerUser } from '../../../adapters/backend';
 import { notify } from '../../../components/NotifToast';
 import UserContext from '../../../contexts/User';
@@ -26,7 +28,7 @@ function RegisterBox() {
   return (
     <div>
       {user?.id && user?.accessToken ? (
-        <span>Will render dashboard</span> // Redirect to Dashboard
+        <Redirect to='/dashboard' />
       ) : registeredId ? (
         <span>
           Congrats, you've been registered! Log in now to access the platform
@@ -51,7 +53,6 @@ function RegisterBox() {
           <Button type="submit">Register</Button>
         </form>
       )}
-      ;
     </div>
   );
 }
