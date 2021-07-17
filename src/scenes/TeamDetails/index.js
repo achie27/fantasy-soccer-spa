@@ -1,7 +1,11 @@
 import { Container, IconButton } from '@material-ui/core';
 import { useContext, useEffect, useState } from 'react';
 import UserContext from '../../contexts/User';
-import { fetchTeam, updatePlayersInTeam } from '../../adapters/backend';
+import {
+  fetchTeam,
+  updatePlayersInTeam,
+  updatePlayerDetails,
+} from '../../adapters/backend';
 import { notify } from '../../components/NotifToast';
 import { Delete } from '@material-ui/icons';
 import { DataGrid } from '@material-ui/data-grid';
@@ -28,6 +32,11 @@ function TeamDetails() {
       editable: true,
     },
     {
+      field: 'type',
+      headerName: 'Position',
+      width: 150,
+    },
+    {
       field: 'value',
       headerName: 'Value',
       width: 150,
@@ -43,15 +52,20 @@ function TeamDetails() {
               team.id,
               team.players.filter((p) => p.id != params.id),
               user?.token
-            ).then(() => {
-              setTeam((oldTeam) => {
-                return {
-                  ...oldTeam,
-                  players: oldTeam.players.filter((p) => p.id != params.id),
-                };
+            )
+              .then(() => {
+                setTeam((oldTeam) => {
+                  return {
+                    ...oldTeam,
+                    players: oldTeam.players.filter((p) => p.id != params.id),
+                  };
+                });
+                notify(`Player ${params.id} removed from team`, 'info');
+              })
+              .catch((e) => {
+                console.error(e);
+                notify("Couldn't delete player ", 'error');
               });
-              notify(`Player ${params.id} removed from team`, 'info');
-            });
           }}
         >
           <Delete />
@@ -75,6 +89,24 @@ function TeamDetails() {
   function processCellEdit(e) {
     // e.stopPropagation();
     console.log(e);
+    updatePlayerDetails(e.id, { [e.field]: e.props.value }, user?.token)
+      .then(() => {
+        notify(`Player ${e.id} has been edited`, 'info');
+        setTeam((oldTeam) => {
+          return {
+            ...oldTeam,
+            players: oldTeam.players.map((p) => {
+              if (p.id === e.id) return { ...p, [e.field]: e.props.value };
+
+              return p;
+            }),
+          };
+        });
+      })
+      .catch((e) => {
+        console.error(e);
+        notify("Couldn't update player ", 'error');
+      });
   }
 
   return (
@@ -86,6 +118,7 @@ function TeamDetails() {
             firstName: p.firstName,
             lastName: p.lastName,
             value: p.value,
+            type: p.type,
           }))}
           columns={columns}
           pageSize={10}

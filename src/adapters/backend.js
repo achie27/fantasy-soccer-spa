@@ -106,3 +106,30 @@ export const updatePlayersInTeam = async (teamId, players, token) => {
     throw new Error(e.toJSON().message);
   }
 };
+
+export const updatePlayerDetails = async (
+  playerId,
+  { firstName, lastName },
+  token
+) => {
+  try {
+    const data = await axios.put(
+      `${process.env.REACT_APP_API_HOST}/api/v1/players/${playerId}`,
+      {
+        ...(firstName && { firstName }),
+        ...(lastName && { lastName }),
+      },
+      {
+        headers: {
+          'access-token': token,
+        },
+      }
+    );
+  } catch (e) {
+    if (e.response) {
+      throw new Error(e.response.data.code);
+    }
+
+    throw new Error(e.toJSON().message);
+  }
+};
