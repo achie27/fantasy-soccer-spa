@@ -17,12 +17,28 @@
   text-align: center;
 }
 
-.appbar-title {
-  padding: 20px 0px;
+.header {
+  flex-grow: 1;
+}
+
+/* .appbar-title {
   text-transform: uppercase;
   font-weight: 900;
   letter-spacing: 2px;
+	width: 30%;
+	float: left;
 }
+
+.appbar-logout {
+	width: 70%;
+	float: right;
+}
+
+.appbar-logout-button {
+	letter-spacing: 1.2;
+	float: right;
+	background-color: 'white';
+} */
 
 .app {
   width: 100%;
@@ -33,6 +49,10 @@
 
 .landing-page {
   height: 650px;
+}
+
+.dashboard {
+  height: 700px;
 }
 
 .auth-forms {
@@ -63,4 +83,21 @@
 
 .auth-forms-item-register-info {
   margin: 20px;
+}
+
+.dashboard-team-header {
+  font-size: 50px;
+  margin: 50px 0px 0px 0px;
+  text-transform: uppercase;
+  letter-spacing: 10px;
+  font-weight: 700;
+}
+.dashboard-team-subheader {
+  font-size: 12px;
+  color: grey;
+}
+.dashboard-team-details {
+  height: 65%;
+  width: 70%;
+  margin: auto;
 }

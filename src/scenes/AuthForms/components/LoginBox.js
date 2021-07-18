@@ -34,6 +34,11 @@ function LoginBox() {
       e.target.elements.password.value
     )
       .then((data) => {
+        // boom, xss
+
+        localStorage.setItem('userId', data.data.id);
+        localStorage.setItem('token', data.data.accessToken);
+
         setUser({
           id: data.data.id,
           token: data.data.accessToken,
