@@ -1,29 +1,66 @@
 * {
-	margin : 0;
-	padding: 0;
-	font-family: Arial;
-	box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial;
+  box-sizing: border-box;
 }
 
 .container {
-	width: 80%;
-	margin: auto auto;
+  width: 80%;
+  margin: auto auto;
 }
 
 .center-aligned {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
 }
 
 .appbar-title {
-	padding: 20px 0px;
+  padding: 20px 0px;
   text-transform: uppercase;
   font-weight: 900;
   letter-spacing: 2px;
 }
 
 .app {
+  width: 100%;
+  position: relative;
+}
+.app-component {
+}
+
+.landing-page {
   height: 650px;
+}
+
+.auth-forms {
+}
+
+.auth-forms-item {
+  width: 100%;
+  position: relative;
+}
+
+.auth-forms-info {
+  width: 100%;
+  position: relative;
+  font-weight: 600;
+}
+
+.auth-forms-info a {
+  cursor: pointer;
+  text-decoration: underline wavy #3f51b5;
+}
+
+.auth-forms-item-login,
+.auth-forms-item-register {
+  height: 400px;
+  width: 300px;
+  margin: auto;
+}
+
+.auth-forms-item-register-info {
+  margin: 20px;
 }

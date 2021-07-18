@@ -12,17 +12,15 @@ function App() {
   const [user, setUser] = useState({});
   return (
     <UserContext.Provider value={[user, setUser]}>
-      <AppBar className='header'>
-        <div className='container'>
-          <div className='appbar-title'>
-            Fantasy Soccer
-          </div>
+      <AppBar className="header" position="sticky">
+        <div className="container">
+          <div className="appbar-title">Fantasy S⚽ccer</div>
         </div>
       </AppBar>
-      <div className='app'>
-        <div className='container'>
+      <div className="app">
+        <div className="container">
           <NotifToastContainer />
-          <div className='app center-aligned'>
+          <div className="app-component">
             <Switch>
               <PrivateRoute path="/dashboard" component={Dashboard} exact />
               <Route path="/" component={Landing} exact />

@@ -1,4 +1,4 @@
-import { Container } from '@material-ui/core';
+import { div } from '@material-ui/core';
 import { useContext, useState } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
@@ -10,38 +10,27 @@ function AuthForms() {
   const [user] = useContext(UserContext);
   const [authType, setAuthType] = useState('login');
 
+  if (user?.id && user?.token) return <Redirect to="/dashboard" />;
+
   return (
-    <Container maxWidth="sm">
-      <Container>
+    <div className="auth-forms">
+      <div className="auth-forms-item">
         {authType === 'login' ? <LoginBox /> : <RegisterBox />}
-      </Container>
-      {user?.id && user?.token ? (
-        <Redirect to="/dashboard" />
-      ) : (
-        <Container>
-          {authType === 'login' ? (
-            <span>
-              Don't have an account?
-              <a
-                style={{ cursor: 'pointer', color: 'blue' }}
-                onClick={() => setAuthType('register')}
-              >
-                Register now.
-              </a>
-            </span>
-          ) : (
-            <span>
-              <a
-                style={{ cursor: 'pointer', color: 'blue' }}
-                onClick={() => setAuthType('login')}
-              >
-                Log in
-              </a>
-            </span>
-          )}
-        </Container>
-      )}
-    </Container>
+      </div>
+
+      <div className="auth-forms-info">
+        {authType === 'login' ? (
+          <div>
+            Don't have an account? <nbsp />
+            <a onClick={() => setAuthType('register')}>Register now.</a>
+          </div>
+        ) : (
+          <div>
+            <a onClick={() => setAuthType('login')}>Go back to log in?</a>
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
 

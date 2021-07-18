@@ -126,22 +126,22 @@ function TeamDetails() {
   }
 
   return (
-      <DataGrid
-        rows={team?.players?.map((p) => ({
-          id: p.id,
-          firstName: p.firstName,
-          lastName: p.lastName,
-          value: p.value,
-          type: p.type,
-        }))}
-        columns={columns}
-        pageSize={15}
-        loading={!teamLoaded}
-        disableColumnMenu
-        disableColumnFilter
-        dis
-        onEditCellChangeCommitted={processCellEdit}
-      />
+    <DataGrid
+      rows={team?.players?.map((p) => ({
+        id: p.id,
+        firstName: p.firstName,
+        lastName: p.lastName,
+        value: p.value,
+        type: p.type,
+      }))}
+      columns={columns}
+      pageSize={15}
+      loading={!teamLoaded}
+      disableColumnMenu
+      disableColumnFilter
+      dis
+      onEditCellChangeCommitted={processCellEdit}
+    />
   );
 }
 

@@ -1,12 +1,29 @@
 import { TextField, Button } from '@material-ui/core';
 import { useContext, useState } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
 
 import { registerUser } from '../../../adapters/backend';
 import { notify } from '../../../components/NotifToast';
 import UserContext from '../../../contexts/User';
 
+const useStyles = makeStyles({
+  'auth-forms-item-register-field': {
+    margin: '10px',
+    alignSelf: 'center',
+    width: '100%',
+  },
+  'auth-forms-item-register-button': {
+    margin: '15px',
+    fontWeight: 600,
+    letterSpacing: 1.2,
+    alignSelf: 'center',
+    padding: '10px',
+  },
+});
+
 function RegisterBox() {
+  const classes = useStyles();
   const [user] = useContext(UserContext);
   const [registeredId, setRegisteredId] = useState('');
 
@@ -25,16 +42,19 @@ function RegisterBox() {
       });
   }
 
+  if (user?.id && user?.token) return <Redirect to="/dashboard" />;
+
   return (
     <div>
-      {user?.id && user?.accessToken ? (
-        <Redirect to="/dashboard" />
-      ) : registeredId ? (
-        <span>
+      {registeredId ? (
+        <div className="auth-forms-item-register-info">
           Congrats, you've been registered! Log in now to access the platform
-        </span>
+        </div>
       ) : (
-        <form onSubmit={handleSubmit}>
+        <form
+          className="auth-forms-item-register center-aligned"
+          onSubmit={handleSubmit}
+        >
           <TextField
             id="email"
             name="email"
@@ -42,6 +62,7 @@ function RegisterBox() {
             variant="outlined"
             type="text"
             autoFocus
+            className={classes['auth-forms-item-register-field']}
           />
           <TextField
             id="password"
@@ -49,8 +70,16 @@ function RegisterBox() {
             label="Password"
             variant="outlined"
             type="password"
+            className={classes['auth-forms-item-register-field']}
           />
-          <Button type="submit">Register</Button>
+          <Button
+            type="submit"
+            className={classes['auth-forms-item-register-button']}
+            color="primary"
+            variant="contained"
+          >
+            Register
+          </Button>
         </form>
       )}
     </div>

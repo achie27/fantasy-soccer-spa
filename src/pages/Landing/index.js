@@ -2,7 +2,7 @@ import AuthForms from '../../scenes/AuthForms';
 
 function Landing() {
   return (
-    <div>
+    <div className="landing-page center-aligned">
       <AuthForms />
     </div>
   );
